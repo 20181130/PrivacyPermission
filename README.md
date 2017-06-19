@@ -6,6 +6,9 @@
 >  你可以参考periscope提示设备权限的UI来完成自己的权限提示
 >，你也可以自己设计一个UI来完成它。
 
+*__简书地址__*
+[简书](http://www.jianshu.com/p/63b6e513456c)
+
 *__代码目录__*
 * NSAuthorityStatus 
 * NSAuthoritySingleton
@@ -20,7 +23,5 @@ ____
      }else{
    [[NSAuthorityManager sharedInstance]obtainPHPhotoAuthorizedStatus];
  }
-
-*__简书地址__*
-
-[简书](http://www.jianshu.com/p/63b6e513456c)
+ 
+ 
