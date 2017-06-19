@@ -1,4 +1,4 @@
-# __NSAuthorityManage__ &copy;*BANYAN*
+# __NSAuthorityManage__ &copy;*GREENBANYAN*
 
 
 >  NSAuthorityManage，是一个iOS设备权限管理器，可以用它来做更友好的设备权限交互体验。
