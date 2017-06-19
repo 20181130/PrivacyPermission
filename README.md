@@ -1,0 +1,22 @@
+# __NSAuthorityManage__ &copy;*BANYAN*
+
+
+>  NSAuthorityManage，是一个iOS设备权限管理器，可以用它来做更友好的设备权限交互体验。权限权限设备设备
+>
+>  你可以参考periscope提示设备权限的UI来完成自己的权限提示
+>，你也可以自己设计一个UI来完成它。
+
+*代码目录*
+* NSAuthorityStatus 
+* NSAuthoritySingleton
+* NSAuthorityProtocol
+* NSAuthorityManager
+____
+*__Example__*
+>例如请求开启一个相机权限:
+```
+ if([NSAuthorityManager isObtainPHPhotoAuthority]){
+       NSLog(@"已经开启相机权限");
+     }else{
+   [[NSAuthorityManager sharedInstance]obtainPHPhotoAuthorizedStatus];
+ }
