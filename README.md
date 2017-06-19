@@ -22,6 +22,4 @@ ____
  }
  ```
  
- *__简书地址__*
- 
-[简书](http://www.jianshu.com/p/63b6e513456c)
+*__[简书]__*(http://www.jianshu.com/p/63b6e513456c)
