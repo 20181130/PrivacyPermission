@@ -6,7 +6,7 @@
 >  你可以参考periscope提示设备权限的UI来完成自己的权限提示
 >，你也可以自己设计一个UI来完成它。
 
-*代码目录*
+*__代码目录__*
 * NSAuthorityStatus 
 * NSAuthoritySingleton
 * NSAuthorityProtocol
