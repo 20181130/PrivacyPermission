@@ -20,3 +20,6 @@ ____
      }else{
    [[NSAuthorityManager sharedInstance]obtainPHPhotoAuthorizedStatus];
  }
+ 
+[简书讲解链接](http://www.jianshu.com/p/63b6e513456c "简书")
+
