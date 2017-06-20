@@ -18,9 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self authorityPromopt];
-    });
+     [self authorityPromopt];
 }
 
 -(void)authorityPromopt{
@@ -51,7 +49,7 @@
             
         case 1:{
             if ([NSAuthorityManager isObtainPhPhotoAuthority]) {
-                NSLog(@"已经开启相机权限");
+                NSLog(@"已经开启相册权限");
             }else{
                 [[NSAuthorityManager sharedInstance]obtainPHPhotoAuthorizedStaus];
             }
@@ -59,7 +57,7 @@
             
         case 2:{
             if ([NSAuthorityManager isObtainMediaAuthority]) {
-                NSLog(@"已经开启相机权限");
+                NSLog(@"已经开启媒体资料库");
             }else{
                 [[NSAuthorityManager sharedInstance]obtainMPMediaAuthorizedStatus];
             }
@@ -67,7 +65,7 @@
             
         case 3:{
             if ([NSAuthorityManager isObtainCNContactAuthority]) {
-                NSLog(@"已经开启相机权限");
+                NSLog(@"已经开启通讯录权限");
             }else{
                 [[NSAuthorityManager sharedInstance]obtainCNContactAuthorizedStatus
                  ];
