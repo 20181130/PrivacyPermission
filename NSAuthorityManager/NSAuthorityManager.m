@@ -41,15 +41,18 @@ static NSString *const kUserNotificationStatusChangeNotification = @"userNotific
 @implementation NSAuthorityManager NSSingletonM(Instance);
 
 #pragma mark - 定位
-+(CLAuthorizationStatus)currentLocationStatus{
++(CLAuthorizationStatus)currentLocationStatus
+{
     NSAuthorityManager *manager = [NSAuthorityManager sharedInstance];
     return [manager statusOfCurrentLocation];
 }
-+(NSString *)currentLocationStatusString{
++(NSString *)currentLocationStatusString
+{
     NSAuthorityManager *manager = [NSAuthorityManager sharedInstance];
     return [NSString stringWithFormat:@"%d",[manager statusOfCurrentLocation]];
 }
--(CLAuthorizationStatus)statusOfCurrentLocation{
+-(CLAuthorizationStatus)statusOfCurrentLocation
+{
     BOOL isLocation = [CLLocationManager locationServicesEnabled];
     if (!isLocation) {
         DLog(@"定位权限:未起开定位开关(not turn on the location)");
@@ -77,7 +80,8 @@ static NSString *const kUserNotificationStatusChangeNotification = @"userNotific
     return status;
 }
 
-+(void)beginLocationNotification:(id<LocationStatusProtocol>)listener{
++(void)beginLocationNotification:(id<LocationStatusProtocol>)listener
+{
     NSAuthorityManager *manager = [NSAuthorityManager sharedInstance];
     
     if (manager.isNotiLocationStatus) {
@@ -88,7 +92,8 @@ static NSString *const kUserNotificationStatusChangeNotification = @"userNotific
     [[NSNotificationCenter defaultCenter]addObserver:listener selector:@selector(locationStatusChangeNotification:) name:kLocationStatusChangeNotification object:manager];
     manager.isNotiLocationStatus = YES;
 }
-+(void)endLocationNotification:(id<LocationStatusProtocol>)listener{
++(void)endLocationNotification:(id<LocationStatusProtocol>)listener
+{
     NSAuthorityManager *manager = [NSAuthorityManager sharedInstance];
     
     if (!manager.isNotiLocationStatus) {
@@ -99,7 +104,8 @@ static NSString *const kUserNotificationStatusChangeNotification = @"userNotific
     [[NSNotificationCenter defaultCenter]removeObserver:listener name:kLocationStatusChangeNotification object:manager];
     manager.isNotiLocationStatus = NO;
 }
--(void)locationStatusChangeNotification:(NSNotification *)notification{
+-(void)locationStatusChangeNotification:(NSNotification *)notification
+{
     if (notification.name == kLocationStatusChangeNotification && notification.object != nil) {
         self.currentLocationStatus = [self currentLocationStatus];
     }
@@ -110,7 +116,8 @@ static NSString *const kUserNotificationStatusChangeNotification = @"userNotific
     [[NSNotificationCenter defaultCenter]postNotificationName:kLocationStatusChangeNotification object:self userInfo:userInfo];
 }
 
-+(BOOL)isObtainLocationAuthority{
++(BOOL)isObtainLocationAuthority
+{
     if ([self currentLocationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse | [self currentLocationStatus] == kCLAuthorizationStatusAuthorizedAlways) {
         return YES;
     }else{
@@ -118,19 +125,20 @@ static NSString *const kUserNotificationStatusChangeNotification = @"userNotific
     }
 }
 
--(void)obtainCLLocationAlwaysAuthorizedStatus{
+-(void)obtainCLLocationAlwaysAuthorizedStatus
+{
     _locationManager = [[CLLocationManager alloc]init];
     [_locationManager requestAlwaysAuthorization];
 }
--(void)obtainCLLocationWhenInUseAuthorizedStatus{
+-(void)obtainCLLocationWhenInUseAuthorizedStatus
+{
     _locationManager = [[CLLocationManager alloc]init];
     [_locationManager requestWhenInUseAuthorization];
 }
 
 #pragma mark - 蓝牙
-//+(BOOL)isObtainBluetoothAuthority{
-//}
--(void)obtainBluetoothAuthorizedStatus{
+-(void)obtainBluetoothAuthorizedStatus
+{
     _centralManager = [[CBCentralManager alloc]initWithDelegate:self queue:nil];
     CBManagerState state = [_centralManager state];
     if (state == CBManagerStateUnknown) {
@@ -175,7 +183,8 @@ static NSString *const kUserNotificationStatusChangeNotification = @"userNotific
 //    return YES;
 //}
 //#pragma clang diagnostic pop
--(void)obtainUserNotificationAuthorizedStatus{
+-(void)obtainUserNotificationAuthorizedStatus
+{
     UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
     [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert + UNAuthorizationOptionSound)
                           completionHandler:^(BOOL granted, NSError * _Nullable error) {
@@ -188,7 +197,8 @@ static NSString *const kUserNotificationStatusChangeNotification = @"userNotific
 }
 
 #pragma mark - 媒体资料库权限
-+(BOOL)isObtainMediaAuthority{
++(BOOL)isObtainMediaAuthority
+{
     MPMediaLibraryAuthorizationStatus status = [MPMediaLibrary authorizationStatus];
     if (status == MPMediaLibraryAuthorizationStatusNotDetermined) {
         DLog(@"媒体资料库权限:未选择权限(NotDetermined)");
@@ -203,7 +213,8 @@ static NSString *const kUserNotificationStatusChangeNotification = @"userNotific
         DLog(@"媒体资料库权限:已授权(Authorized)");
     return YES;
 }
--(void)obtainMPMediaAuthorizedStatus{
+-(void)obtainMPMediaAuthorizedStatus
+{
     MPMediaLibraryAuthorizationStatus authStatus = [MPMediaLibrary authorizationStatus];
     if (authStatus == MPMediaLibraryAuthorizationStatusNotDetermined) {
         [MPMediaLibrary requestAuthorization:^(MPMediaLibraryAuthorizationStatus status) {
@@ -222,7 +233,8 @@ static NSString *const kUserNotificationStatusChangeNotification = @"userNotific
 }
 
 #pragma mark - 语音识别
-+(BOOL)isObtainSpeechAuthority{
++(BOOL)isObtainSpeechAuthority
+{
     SFSpeechRecognizerAuthorizationStatus status = [SFSpeechRecognizer authorizationStatus];
     if (status == SFSpeechRecognizerAuthorizationStatusNotDetermined) {
         DLog(@"语音识别权限:未选择权限(NotDetermined)");
@@ -237,7 +249,8 @@ static NSString *const kUserNotificationStatusChangeNotification = @"userNotific
         DLog(@"语音识别权限:已授权(Authorized)"); //SFSpeechRecognizerAuthorizationStatusAuthorized
     return YES;
 }
--(void)obtainSFSpeechAuthorizedStatus{
+-(void)obtainSFSpeechAuthorizedStatus
+{
     [SFSpeechRecognizer requestAuthorization:^(SFSpeechRecognizerAuthorizationStatus status) {
         if (status == SFSpeechRecognizerAuthorizationStatusNotDetermined) {
             DLog(@"语音识别开启权限:未选择权限(NotDetermined)");
@@ -252,7 +265,8 @@ static NSString *const kUserNotificationStatusChangeNotification = @"userNotific
 }
 
 #pragma mark - 日历权限
-+(BOOL)isObtainEKEventAuthority{
++(BOOL)isObtainEKEventAuthority
+{
     EKAuthorizationStatus status = [EKEventStore  authorizationStatusForEntityType:EKEntityTypeEvent];
     if (status == EKAuthorizationStatusDenied) {
         DLog(@"日历权限:用户拒绝App使用(Denied)");
@@ -267,7 +281,8 @@ static NSString *const kUserNotificationStatusChangeNotification = @"userNotific
     DLog(@"日历权限:已授权(Authorized)"); //EKAuthorizationStatusAuthorized
     return YES;
 }
--(void)obtainEKEventAuthorizedStatus{
+-(void)obtainEKEventAuthorizedStatus
+{
     EKEventStore *store = [[EKEventStore alloc]init];
     [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError * _Nullable error) {
         if (granted) {
@@ -279,7 +294,8 @@ static NSString *const kUserNotificationStatusChangeNotification = @"userNotific
 }
 
 #pragma mark - 相册权限
-+(BOOL)isObtainPhPhotoAuthority{
++(BOOL)isObtainPhPhotoAuthority
+{
     PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
     if (status == PHAuthorizationStatusDenied) {
         DLog(@"相册权限:用户拒绝开启权限(Denied)");
@@ -294,7 +310,8 @@ static NSString *const kUserNotificationStatusChangeNotification = @"userNotific
        DLog(@"相册权限:已授权(Authorized)"); // PHAuthorizationStatusAuthorized
     return YES;
 }
--(void)obtainPHPhotoAuthorizedStaus{
+-(void)obtainPHPhotoAuthorizedStaus
+{
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         if (status == 3) {
             DLog(@"相册开启权限:获取");
@@ -305,7 +322,8 @@ static NSString *const kUserNotificationStatusChangeNotification = @"userNotific
 }
 
 #pragma mark - 相机权限
-+(BOOL)isObtainAVVideoAuthority{
++(BOOL)isObtainAVVideoAuthority
+{
     AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
     if (status == AVAuthorizationStatusDenied) {
         DLog(@"相机权限:未进行授权选择(Denied)");
@@ -320,7 +338,8 @@ static NSString *const kUserNotificationStatusChangeNotification = @"userNotific
         DLog(@"相机权限:已授权(Authorized)"); //AVAuthorizationStatusAuthorized
     return YES;
 }
--(void)obtainAVMediaVideoAuthorizedStatus{
+-(void)obtainAVMediaVideoAuthorizedStatus
+{
     [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
         if (granted) {
             DLog(@"相机开启权限:已授权");
@@ -331,7 +350,8 @@ static NSString *const kUserNotificationStatusChangeNotification = @"userNotific
 }
 
 #pragma mark - 通讯录权限
-+(BOOL)isObtainCNContactAuthority{
++(BOOL)isObtainCNContactAuthority
+{
     CNAuthorizationStatus status = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
     if (status == CNAuthorizationStatusDenied) {
         DLog(@"通讯录权限:拒绝(Denied)");
@@ -346,7 +366,8 @@ static NSString *const kUserNotificationStatusChangeNotification = @"userNotific
     DLog(@"通讯录权限:已授权(Authorized)"); //CNAuthorizationStatusAuthorized
     return YES;
 }
--(void)obtainCNContactAuthorizedStatus{
+-(void)obtainCNContactAuthorizedStatus
+{
     CNContactStore *contactStore = [[CNContactStore alloc] init];
     [contactStore requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
         if (granted) {
@@ -358,7 +379,8 @@ static NSString *const kUserNotificationStatusChangeNotification = @"userNotific
 }
 
 #pragma mark - 麦克风权限
-+(BOOL)isObtainAVAudioAuthority{
++(BOOL)isObtainAVAudioAuthority
+{
     AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
     if (status == AVAuthorizationStatusDenied) {
         DLog(@"麦克风权限:拒绝(Denied)");
@@ -373,7 +395,8 @@ static NSString *const kUserNotificationStatusChangeNotification = @"userNotific
         DLog(@"麦克风权限:已授权(Authorized)"); //AVAuthorizationStatusAuthorized
     return YES;
 }
--(void)obtainAVMediaAudioAuthorizedStatus{
+-(void)obtainAVMediaAudioAuthorizedStatus
+{
     [AVCaptureDevice requestAccessForMediaType:AVMediaTypeAudio completionHandler:^(BOOL granted) {//麦克风权限
         if (granted) {
             DLog(@"麦克风开启权限:获取");
@@ -384,7 +407,8 @@ static NSString *const kUserNotificationStatusChangeNotification = @"userNotific
 }
 
 #pragma mark - 提醒事项权限
-+(BOOL)isObtainReminder{
++(BOOL)isObtainReminder
+{
    EKAuthorizationStatus status = [EKEventStore  authorizationStatusForEntityType:EKEntityTypeEvent];
     if (status == EKAuthorizationStatusDenied) {
         DLog(@"备忘录权限:用户拒绝App使用(Denied)");
@@ -399,7 +423,8 @@ static NSString *const kUserNotificationStatusChangeNotification = @"userNotific
         DLog(@"备忘录权限:已授权(Authorized)"); //EKAuthorizationStatusAuthorized
     return YES;
 }
--(void)obtainEKReminderAuthorizedStatus{
+-(void)obtainEKReminderAuthorizedStatus
+{
     EKEventStore *store = [[EKEventStore alloc]init];
     [store requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError * _Nullable error) {
         if (granted) {
