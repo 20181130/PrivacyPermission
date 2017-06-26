@@ -21,7 +21,8 @@
      [self authorityPromopt];
 }
 
--(void)authorityPromopt{
+-(void)authorityPromopt
+{
     CGFloat marin = 20;
     NSArray *titleArray = @[@"开启相机权限",@"开启相册权限",@"开启媒体资料库",@"开启通讯录权限"];
     
@@ -37,7 +38,8 @@
     }
 }
 
--(void)buttonTarget:(UIButton *)button{
+-(void)buttonTarget:(UIButton *)button
+{
     switch (button.tag) {
         case 0:{
             if ([NSAuthorityManager isObtainAVVideoAuthority]) {
