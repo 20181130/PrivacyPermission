@@ -19,7 +19,7 @@
 #ifndef NSAuthorityStatus_h
 #define NSAuthorityStatus_h
 
-#import <CoreTelephony/CTCellularData.h> //蜂窝状态判断
+//#import <CoreTelephony/CTCellularData.h> //蜂窝状态判断 Private API
 #import <Photos/Photos.h> //获取相册状态权限
 #import <AVFoundation/AVFoundation.h> //相机麦克风权限
 #import <EventKit/EventKit.h> //日历\备提醒事项权限
