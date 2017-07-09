@@ -232,37 +232,37 @@ static NSString *const kUserNotificationStatusChangeNotification = @"userNotific
     }
 }
 
-#pragma mark - 语音识别
-+(BOOL)isObtainSpeechAuthority
-{
-    SFSpeechRecognizerAuthorizationStatus status = [SFSpeechRecognizer authorizationStatus];
-    if (status == SFSpeechRecognizerAuthorizationStatusNotDetermined) {
-        DLog(@"语音识别权限:未选择权限(NotDetermined)");
-        return NO;
-    }else if (status == SFSpeechRecognizerAuthorizationStatusDenied){
-        DLog(@"语音识别权限:用户拒绝App使用(Denied)");
-        return NO;
-    }else if (status == SFSpeechRecognizerAuthorizationStatusRestricted){
-        DLog(@"语音识别权限:未授权(Restricted)");
-        return NO;
-    }
-        DLog(@"语音识别权限:已授权(Authorized)"); //SFSpeechRecognizerAuthorizationStatusAuthorized
-    return YES;
-}
--(void)obtainSFSpeechAuthorizedStatus
-{
-    [SFSpeechRecognizer requestAuthorization:^(SFSpeechRecognizerAuthorizationStatus status) {
-        if (status == SFSpeechRecognizerAuthorizationStatusNotDetermined) {
-            DLog(@"语音识别开启权限:未选择权限(NotDetermined)");
-        }else if (status == SFSpeechRecognizerAuthorizationStatusDenied){
-            DLog(@"语音识别开启权限:用户拒绝App使用(Denied)");
-        }else if (status == SFSpeechRecognizerAuthorizationStatusRestricted){
-            DLog(@"语音识别开启权限:未授权(Restricted)");
-        }else if (status == SFSpeechRecognizerAuthorizationStatusAuthorized){
-            DLog(@"语音识别开启权限:已授权(Authorized)");
-        }
-    }];
-}
+//#pragma mark - 语音识别
+//+(BOOL)isObtainSpeechAuthority
+//{
+//    SFSpeechRecognizerAuthorizationStatus status = [SFSpeechRecognizer authorizationStatus];
+//    if (status == SFSpeechRecognizerAuthorizationStatusNotDetermined) {
+//        DLog(@"语音识别权限:未选择权限(NotDetermined)");
+//        return NO;
+//    }else if (status == SFSpeechRecognizerAuthorizationStatusDenied){
+//        DLog(@"语音识别权限:用户拒绝App使用(Denied)");
+//        return NO;
+//    }else if (status == SFSpeechRecognizerAuthorizationStatusRestricted){
+//        DLog(@"语音识别权限:未授权(Restricted)");
+//        return NO;
+//    }
+//        DLog(@"语音识别权限:已授权(Authorized)"); //SFSpeechRecognizerAuthorizationStatusAuthorized
+//    return YES;
+//}
+//-(void)obtainSFSpeechAuthorizedStatus
+//{
+//    [SFSpeechRecognizer requestAuthorization:^(SFSpeechRecognizerAuthorizationStatus status) {
+//        if (status == SFSpeechRecognizerAuthorizationStatusNotDetermined) {
+//            DLog(@"语音识别开启权限:未选择权限(NotDetermined)");
+//        }else if (status == SFSpeechRecognizerAuthorizationStatusDenied){
+//            DLog(@"语音识别开启权限:用户拒绝App使用(Denied)");
+//        }else if (status == SFSpeechRecognizerAuthorizationStatusRestricted){
+//            DLog(@"语音识别开启权限:未授权(Restricted)");
+//        }else if (status == SFSpeechRecognizerAuthorizationStatusAuthorized){
+//            DLog(@"语音识别开启权限:已授权(Authorized)");
+//        }
+//    }];
+//}
 
 #pragma mark - 日历权限
 +(BOOL)isObtainEKEventAuthority

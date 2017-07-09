@@ -63,12 +63,12 @@
 +(BOOL)isObtainMediaAuthority;
 -(void)obtainMPMediaAuthorizedStatus;
 
-#pragma mark - 语音识别
-/**
-* @brief 是否开启语音识别权限
- */
-+(BOOL)isObtainSpeechAuthority;
--(void)obtainSFSpeechAuthorizedStatus;
+//#pragma mark - 语音识别
+///**
+//* @brief 是否开启语音识别权限
+// */
+//+(BOOL)isObtainSpeechAuthority;
+//-(void)obtainSFSpeechAuthorizedStatus;
 
 #pragma mark - 日历权限
 /**
