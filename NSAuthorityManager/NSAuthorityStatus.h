@@ -19,6 +19,7 @@
 #ifndef NSAuthorityStatus_h
 #define NSAuthorityStatus_h
 
+#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 //#import <CoreTelephony/CTCellularData.h> //蜂窝状态判断 
 #import <Photos/Photos.h> //获取相册状态权限
@@ -26,12 +27,11 @@
 #import <EventKit/EventKit.h> //日历\备提醒事项权限
 #import <Contacts/Contacts.h> //通讯录权限
 #import <SafariServices/SafariServices.h>
-//#import <Speech/Speech.h> //语音识别
+#import <Speech/Speech.h> //语音识别
 #import <HealthKit/HealthKit.h>//运动与健身
 #import <MediaPlayer/MediaPlayer.h> //媒体资料库
-
 #import <UserNotifications/UserNotifications.h> //推送权限
 #import <CoreBluetooth/CoreBluetooth.h> //蓝牙权限
 #import <CoreLocation/CoreLocation.h> //定位权限
 
-#endif /* NSAuthorityStatus_h */
+#endif
