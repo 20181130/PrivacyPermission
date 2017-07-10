@@ -21,7 +21,7 @@ ____
    [[NSAuthorityManager sharedInstance]obtainPHPhotoAuthorizedStatus];
  }
  ```
- ___cocoapods___
+ ___Installation___
  <pre>
  pod 'NSAuthorityManager'
  </pre>
