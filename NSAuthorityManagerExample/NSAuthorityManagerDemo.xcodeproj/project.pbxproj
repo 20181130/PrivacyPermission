@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2311226B1F13A2EA009D4A57 /* NSAuthorityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 231122671F13A2EA009D4A57 /* NSAuthorityManager.m */; };
 		234C753A1ED1B9900055BD6C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 234C75391ED1B9900055BD6C /* main.m */; };
 		234C753D1ED1B9900055BD6C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 234C753C1ED1B9900055BD6C /* AppDelegate.m */; };
 		234C75401ED1B9900055BD6C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 234C753F1ED1B9900055BD6C /* ViewController.m */; };
@@ -15,7 +16,6 @@
 		234C75481ED1B9900055BD6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 234C75461ED1B9900055BD6C /* LaunchScreen.storyboard */; };
 		234C75531ED1B9910055BD6C /* NSAuthorityManagerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 234C75521ED1B9910055BD6C /* NSAuthorityManagerDemoTests.m */; };
 		234C755E1ED1B9910055BD6C /* NSAuthorityManagerDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 234C755D1ED1B9910055BD6C /* NSAuthorityManagerDemoUITests.m */; };
-		23B0EC131F12170200A212D1 /* NSAuthorityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B0EC0F1F12170200A212D1 /* NSAuthorityManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +36,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		231122661F13A2EA009D4A57 /* NSAuthorityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSAuthorityManager.h; sourceTree = "<group>"; };
+		231122671F13A2EA009D4A57 /* NSAuthorityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSAuthorityManager.m; sourceTree = "<group>"; };
+		231122681F13A2EA009D4A57 /* NSAuthorityProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSAuthorityProtocol.h; sourceTree = "<group>"; };
+		231122691F13A2EA009D4A57 /* NSAuthoritySingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSAuthoritySingleton.h; sourceTree = "<group>"; };
+		2311226A1F13A2EA009D4A57 /* NSAuthorityStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSAuthorityStatus.h; sourceTree = "<group>"; };
 		234C75351ED1B9900055BD6C /* NSAuthorityManagerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSAuthorityManagerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		234C75391ED1B9900055BD6C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		234C753B1ED1B9900055BD6C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -52,11 +57,6 @@
 		234C75591ED1B9910055BD6C /* NSAuthorityManagerDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NSAuthorityManagerDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		234C755D1ED1B9910055BD6C /* NSAuthorityManagerDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSAuthorityManagerDemoUITests.m; sourceTree = "<group>"; };
 		234C755F1ED1B9910055BD6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		23B0EC0E1F12170200A212D1 /* NSAuthorityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSAuthorityManager.h; sourceTree = "<group>"; };
-		23B0EC0F1F12170200A212D1 /* NSAuthorityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSAuthorityManager.m; sourceTree = "<group>"; };
-		23B0EC101F12170200A212D1 /* NSAuthorityProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSAuthorityProtocol.h; sourceTree = "<group>"; };
-		23B0EC111F12170200A212D1 /* NSAuthoritySingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSAuthoritySingleton.h; sourceTree = "<group>"; };
-		23B0EC121F12170200A212D1 /* NSAuthorityStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSAuthorityStatus.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,10 +84,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		231122651F13A2EA009D4A57 /* NSAuthorityManager */ = {
+			isa = PBXGroup;
+			children = (
+				231122661F13A2EA009D4A57 /* NSAuthorityManager.h */,
+				231122671F13A2EA009D4A57 /* NSAuthorityManager.m */,
+				231122681F13A2EA009D4A57 /* NSAuthorityProtocol.h */,
+				231122691F13A2EA009D4A57 /* NSAuthoritySingleton.h */,
+				2311226A1F13A2EA009D4A57 /* NSAuthorityStatus.h */,
+			);
+			path = NSAuthorityManager;
+			sourceTree = "<group>";
+		};
 		234C752C1ED1B9900055BD6C = {
 			isa = PBXGroup;
 			children = (
-				23B0EC0D1F12170200A212D1 /* Example */,
+				231122651F13A2EA009D4A57 /* NSAuthorityManager */,
 				234C75371ED1B9900055BD6C /* NSAuthorityManagerDemo */,
 				234C75511ED1B9910055BD6C /* NSAuthorityManagerDemoTests */,
 				234C755C1ED1B9910055BD6C /* NSAuthorityManagerDemoUITests */,
@@ -145,18 +157,6 @@
 				234C755F1ED1B9910055BD6C /* Info.plist */,
 			);
 			path = NSAuthorityManagerDemoUITests;
-			sourceTree = "<group>";
-		};
-		23B0EC0D1F12170200A212D1 /* Example */ = {
-			isa = PBXGroup;
-			children = (
-				23B0EC0E1F12170200A212D1 /* NSAuthorityManager.h */,
-				23B0EC0F1F12170200A212D1 /* NSAuthorityManager.m */,
-				23B0EC101F12170200A212D1 /* NSAuthorityProtocol.h */,
-				23B0EC111F12170200A212D1 /* NSAuthoritySingleton.h */,
-				23B0EC121F12170200A212D1 /* NSAuthorityStatus.h */,
-			);
-			path = Example;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,7 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23B0EC131F12170200A212D1 /* NSAuthorityManager.m in Sources */,
+				2311226B1F13A2EA009D4A57 /* NSAuthorityManager.m in Sources */,
 				234C75401ED1B9900055BD6C /* ViewController.m in Sources */,
 				234C753D1ED1B9900055BD6C /* AppDelegate.m in Sources */,
 				234C753A1ED1B9900055BD6C /* main.m in Sources */,
