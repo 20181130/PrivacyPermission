@@ -1,5 +1,8 @@
 # __NSAuthorityManager__ &copy;*GREENBANYAN*
-
+![Cocoapods](https://img.shields.io/badge/Cocoapods-Support-green.svg)&nbsp;
+![License](https://img.shields.io/badge/License-MIT-orange.svg)&nbsp;
+![Platform](https://img.shields.io/badge/Platform-iOS-yellowgreen.svg)&nbsp;
+![Support](https://img.shields.io/badge/Support-iOS%208%2B-lightgrey.svg)&nbsp;
 
 >  NSAuthorityManage，是一个iOS设备权限管理器，可以用它来做更友好的设备权限交互体验。
 >
