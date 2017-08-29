@@ -4,7 +4,7 @@
 ![Platform](https://img.shields.io/badge/Platform-iOS-yellowgreen.svg)&nbsp;
 ![Support](https://img.shields.io/badge/Support-iOS%208%2B-lightgrey.svg)&nbsp;
 
- - NSAuthorityManage，是一个iOS设备权限管理器，可以用它来做更友好的设备权限交互体验。<br/>
+NSAuthorityManage，是一个iOS设备权限管理器，可以用它来做更友好的设备权限交互体验。<br/>
 你可以参考periscope提示设备权限的UI来完成自己的权限提示,你也可以自己设计一个UI来完成它。
 
 *__代码目录__*
