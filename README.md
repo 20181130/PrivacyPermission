@@ -63,7 +63,7 @@
 ### EXAMPLE
 ```
      [[PrivacyPermission sharedInstance]accessPrivacyPermissionWithType:PrivacyPermissionTypePhoto completion:^(BOOL response, PrivacyPermissionAuthorizationStatus status) {
-     NSLog(@"response:%d \n status:%ld",response,status);
+          NSLog(@"response:%d \n status:%ld",response,status);
      }];
 ```
 
