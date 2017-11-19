@@ -1,15 +1,15 @@
 Pod::Spec.new do |s|
-  s.name         = "NSAuthorityManager"
-  s.version      = "1.0.0"
-  s.summary      = "iOS Equipment Authorization Management."
+  s.name         = "PrivacyPermission"
+  s.version      = "2.0.0"
+  s.summary      = "PrivacyPermission is a library for accessing various system privacy permissions ."
   s.description  = <<-DESC
-  You Can Use 'NSAuthorityManager' to manager your equipment authorization.
+PrivacyPermission is a library for accessing various system privacy permissions,you can use it for more friendly access.
                    DESC
-  s.homepage     = "https://github.com/GREENBANYAN/NSAuthorityManager"
+  s.homepage     = "https://github.com/GREENBANYAN/PrivacyPermission"
   s.license      = "MIT"
   s.author             = { "GREENBANYAN" => "@greenbanyan@163.com" }
   s.platform     = :ios,'8.0'
-  s.source       = { :git => "https://github.com/GREENBANYAN/NSAuthorityManager", :tag => "#{s.version}" }
-  s.source_files  = "NSAuthorityManager/*.{h,m}"
+  s.source       = { :git => "https://github.com/GREENBANYAN/PrivacyPermission.git", :tag => "#{s.version}" }
+  s.source_files  = "PrivacyPermission/*.{h,m}"
   s.requires_arc = true
 end
