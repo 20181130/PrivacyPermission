@@ -39,11 +39,12 @@
 ## Preview
  mainpage CN  | mainpage USA
   -----|-----
-   ![Asset/screenshot-CN.png](Asset/screenshot-CN.png) |  ![Asset/screenshot-USA.png](Asset/screenshot-USA.png) 
-   
-    GIF Animated CN  | GIF Animated USA
-  -----|-----
-   ![Asset/GIF-CN.gif](Asset/GIF-CN.gif) |  ![Asset/GIF-USA.gif](Asset/GIF-USA.gif) 
+ ![Asset/screenshot-CN.png](Asset/screenshot-CN.png) |  ![Asset/screenshot-USA.png](Asset/screenshot-USA.png) 
+ ---  
+ GIF Animated CN  | GIF Animated USA
+ -----|-----
+ ![Asset/GIF-CN.gif](Asset/GIF-CN.gif) | ![Asset/GIF-USA.gif](Asset/GIF-USA.gif) 
+
 
 ## License
 `PrivacyPermission `use [__MIT license__][1]
@@ -60,13 +61,16 @@
 
 <a name="EXAMPLE"></a>
 ### EXAMPLE
-<pre>
-            [[PrivacyPermission sharedInstance]accessPrivacyPermissionWithType:PrivacyPermissionTypePhoto completion:^(BOOL response, PrivacyPermissionAuthorizationStatus status) {
-                NSLog(@"response:%d \n status:%ld",response,status);
-            }];
-<pre>
-<br.\/>
+```
+     [[PrivacyPermission sharedInstance]accessPrivacyPermissionWithType:PrivacyPermissionTypePhoto completion:^(BOOL response, PrivacyPermissionAuthorizationStatus status) {
+     NSLog(@"response:%d \n status:%ld",response,status);
+     }];
+```
 
 
-[1]: https://github.com/GREENBANYAN/PrivacyPermission/blob/master/LICENSE "MIT License"	
+
+
+
+
+[1]:  https://github.com/GREENBANYAN/PrivacyPermission/blob/master/LICENSE "MIT License"	
 
