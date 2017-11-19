@@ -1,0 +1,15 @@
+/* 
+  InfoPlist.strings
+  PrivacyPermissionExample
+
+  Created by BANYAN on 2017/11/19.
+  Copyright © 2017年 PrivacyPermission. All rights reserved.
+*/
+
+// APP Name
+CFBundleDisplayName = "Push Notification";
+
+// Authority
+NSLocationWhenInUseUsageDescription = "Need your location information for example test";
+NSLocationUsageDescription = "Need your location information for example test";
+NSLocationAlwaysUsageDescription = "Need your location information for example test";
