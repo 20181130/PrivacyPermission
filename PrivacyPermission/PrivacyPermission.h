@@ -24,24 +24,41 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSUInteger,PrivacyPermissionType) {
-    PrivacyPermissionTypePhoto = 0, //相册
-    PrivacyPermissionTypeCamera, //相机
-    PrivacyPermissionTypeMedia, //媒体资料库
-    PrivacyPermissionTypeMicrophone, //麦克风
-    PrivacyPermissionTypeLocation, //位置
-    PrivacyPermissionTypeBluetooth, //蓝牙
-    PrivacyPermissionTypePushNotification, //推送
-    PrivacyPermissionTypeSpeech, //语音识别
-    PrivacyPermissionTypeEvent, //日历
-    PrivacyPermissionTypeContact, //通讯录
-    PrivacyPermissionTypeReminder, //提醒事项
-    PrivacyPermissionTypeHealth, //运动与健身  //暂时只有步数,步行+跑步距离和以爬楼层三种读写权限，如果想要访问更多HealthKit权限请参考 https://github.com/GREENBANYAN/skoal
+    PrivacyPermissionTypePhoto = 0,
+    PrivacyPermissionTypeCamera,
+    PrivacyPermissionTypeMedia,
+    PrivacyPermissionTypeMicrophone,
+    PrivacyPermissionTypeLocation,
+    PrivacyPermissionTypeBluetooth,
+    PrivacyPermissionTypePushNotification,
+    PrivacyPermissionTypeSpeech,
+    PrivacyPermissionTypeEvent,
+    PrivacyPermissionTypeContact,
+    PrivacyPermissionTypeReminder,
+    PrivacyPermissionTypeHealth,
+};
+/*`PrivacyPermissionTypeHealth only have three kinds of permission for read and write,setp count、distance walking running and flights climbed,if you want to access more permissions about `HealthStore`,please refer to the link` -> PrivacyPermissionTypeHealth只有步数,步行+跑步距离和以爬楼层三种读写权限，如果想要访问更多关于`HealthStore`权限请参考链接*/
+// https://github.com/GREENBANYAN/skoal
+
+typedef NS_ENUM(NSUInteger,PrivacyPermissionAuthorizationStatus) {
+    PrivacyPermissionAuthorizationStatusAuthorized = 0,
+    PrivacyPermissionAuthorizationStatusDenied,
+    PrivacyPermissionAuthorizationStatusNotDetermined,
+    PrivacyPermissionAuthorizationStatusRestricted,
+    PrivacyPermissionAuthorizationStatusLocationAlways,
+    PrivacyPermissionAuthorizationStatusLocationWhenInUse,
+    PrivacyPermissionAuthorizationStatusUnkonwn,
 };
 
 @interface PrivacyPermission : NSObject
 
 +(instancetype)sharedInstance;
 
--(void)accessPrivacyPermissionWithType:(PrivacyPermissionType)type completion:(void(^)(BOOL response,NSString *status))completion;
+/**
+ * @brief `Function for access the permissions` -> 获取权限函数
+ * @param type `The enumeration type for access permission` -> 获取权限枚举类型
+ * @param completion `A block for the permission result and the value of authorization status` -> 获取权限结果和对应权限状态的block
+ */
+-(void)accessPrivacyPermissionWithType:(PrivacyPermissionType)type completion:(void(^)(BOOL response,PrivacyPermissionAuthorizationStatus status))completion;
 
 @end

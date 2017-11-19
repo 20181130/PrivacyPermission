@@ -20,36 +20,20 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
-///-------------------------
-#pragma mark - DEBUG
-///-------------------------
-#ifdef DEBUG
-#define DLog(FORMAT, ...) fprintf(stderr, "%s [Line %zd]\t%s\n", [[[NSString stringWithUTF8String: __FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat: FORMAT, ## __VA_ARGS__] UTF8String]);
-#else
-#define DLog(FORMAT, ...) nil
-#endif
-
 #import "PrivacyPermission.h"
-
-#import <Photos/Photos.h> //获取相册状态权限
-#import <AVFoundation/AVFoundation.h> //相机麦克风权限
-#import <EventKit/EventKit.h> //日历\备提醒事项权限
-#import <Contacts/Contacts.h> //通讯录权限
-#import <SafariServices/SafariServices.h>
-#import <Speech/Speech.h> //语音识别
-#import <HealthKit/HealthKit.h>//运动与健身
-#import <MediaPlayer/MediaPlayer.h> //媒体资料库
-#import <UserNotifications/UserNotifications.h> //推送权限
-#import <CoreBluetooth/CoreBluetooth.h> //蓝牙权限
-#import <CoreLocation/CoreLocation.h> //定位权限
+#import <Photos/Photos.h>
+#import <AVFoundation/AVFoundation.h>
+#import <EventKit/EventKit.h>
+#import <Contacts/Contacts.h>
+#import <Speech/Speech.h>
+#import <HealthKit/HealthKit.h>
+#import <MediaPlayer/MediaPlayer.h>
+#import <UserNotifications/UserNotifications.h>
+#import <CoreBluetooth/CoreBluetooth.h>
+#import <CoreLocation/CoreLocation.h>
 
 static PrivacyPermission *_instance = nil;
-
-static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //定位精度
-
-@interface PrivacyPermission()
-@end
+static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //`Positioning accuracy` -> 定位精度
 
 @implementation PrivacyPermission
 
@@ -72,53 +56,49 @@ static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //定�
 }
 
 #pragma mark - Public
--(void)accessPrivacyPermissionWithType:(PrivacyPermissionType)type completion:(void(^)(BOOL response,NSString *status))completion
-{
+-(void)accessPrivacyPermissionWithType:(PrivacyPermissionType)type completion:(void(^)(BOOL response,PrivacyPermissionAuthorizationStatus status))completion{
     switch (type) {
-        case PrivacyPermissionTypePhoto:
-        {
+        case PrivacyPermissionTypePhoto:{
             [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
                 if (status == PHAuthorizationStatusDenied) {
-                    completion(NO, @"AuthorizationStatusDenied");
+                    completion(NO,PrivacyPermissionAuthorizationStatusDenied);
                 } else if (status == PHAuthorizationStatusNotDetermined) {
-                    completion(NO,@"AuthorizationStatusNotDetermined");
+                    completion(NO,PrivacyPermissionAuthorizationStatusNotDetermined);
                 } else if (status == PHAuthorizationStatusRestricted) {
-                    completion(NO, @"AuthorizationStatusRestricted");
+                    completion(NO,PrivacyPermissionAuthorizationStatusRestricted);
                 } else if (status == PHAuthorizationStatusAuthorized) {
-                    completion(YES,@"AuthorizationStatusAuthorized");
+                    completion(YES,PrivacyPermissionAuthorizationStatusAuthorized);
                 }
             }];
         }break;
             
-        case PrivacyPermissionTypeCamera:
-        {
-            [AVCaptureDevice requestAccessForMediaType:AVMediaTypeAudio completionHandler:^(BOOL granted) {
+        case PrivacyPermissionTypeCamera:{
+            [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
                 AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
                 if (granted) {
-                    completion(YES,@"AuthorizationStatusAuthorized");
+                    completion(YES,PrivacyPermissionAuthorizationStatusAuthorized);
                 } else {
                     if (status == AVAuthorizationStatusDenied) {
-                        completion(NO, @"AuthorizationStatusDenied");
+                        completion(NO,PrivacyPermissionAuthorizationStatusDenied);
                     } else if (status == AVAuthorizationStatusNotDetermined) {
-                        completion(NO,@"AuthorizationStatusNotDetermined");
+                        completion(NO,PrivacyPermissionAuthorizationStatusNotDetermined);
                     } else if (status == AVAuthorizationStatusRestricted) {
-                        completion(NO, @"AuthorizationStatusRestricted");
+                        completion(NO,PrivacyPermissionAuthorizationStatusRestricted);
                     }
                 }
             }];
         }break;
             
-        case PrivacyPermissionTypeMedia:
-        {
+        case PrivacyPermissionTypeMedia:{
             [MPMediaLibrary requestAuthorization:^(MPMediaLibraryAuthorizationStatus status) {
                 if (status == MPMediaLibraryAuthorizationStatusDenied) {
-                    completion(NO, @"AuthorizationStatusDenied");
+                    completion(NO,PrivacyPermissionAuthorizationStatusDenied);
                 } else if (status == MPMediaLibraryAuthorizationStatusNotDetermined) {
-                    completion(NO,@"AuthorizationStatusNotDetermined");
+                    completion(NO,PrivacyPermissionAuthorizationStatusNotDetermined);
                 } else if (status == MPMediaLibraryAuthorizationStatusRestricted) {
-                    completion(NO, @"AuthorizationStatusRestricted");
+                    completion(NO,PrivacyPermissionAuthorizationStatusRestricted);
                 } else if (status == MPMediaLibraryAuthorizationStatusAuthorized) {
-                    completion(YES,@"AuthorizationStatusAuthorized");
+                    completion(YES,PrivacyPermissionAuthorizationStatusAuthorized);
                 }
             }];
         }break;
@@ -127,14 +107,14 @@ static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //定�
             [AVCaptureDevice requestAccessForMediaType:AVMediaTypeAudio completionHandler:^(BOOL granted) {
                 AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
                 if (granted) {
-                    completion(YES,@"AuthorizationStatusAuthorized");
+                    completion(YES,PrivacyPermissionAuthorizationStatusAuthorized);
                 } else {
                     if (status == AVAuthorizationStatusDenied) {
-                        completion(NO, @"AuthorizationStatusDenied");
+                        completion(NO,PrivacyPermissionAuthorizationStatusDenied);
                     } else if (status == AVAuthorizationStatusNotDetermined) {
-                        completion(NO,@"AuthorizationStatusNotDetermined");
+                        completion(NO,PrivacyPermissionAuthorizationStatusNotDetermined);
                     } else if (status == AVAuthorizationStatusRestricted) {
-                        completion(NO, @"AuthorizationStatusRestricted");
+                        completion(NO,PrivacyPermissionAuthorizationStatusRestricted);
                     }
                 }
             }];
@@ -151,15 +131,15 @@ static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //定�
             }
             CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
             if (status == kCLAuthorizationStatusAuthorizedAlways) {
-                completion(YES,@"AuthorizationStatusAuthorizedAlways");
+                completion(YES,PrivacyPermissionAuthorizationStatusLocationAlways);
             } else if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
-                completion(YES,@"AuthorizationStatusAuthorizedWhenInUse");
+                completion(YES,PrivacyPermissionAuthorizationStatusLocationWhenInUse);
             } else if (status == kCLAuthorizationStatusDenied) {
-                completion(NO,@"AuthorizationStatusDenied");
+                completion(NO,PrivacyPermissionAuthorizationStatusDenied);
             } else if (status == kCLAuthorizationStatusNotDetermined) {
-                completion(NO,@"AuthorizationStatusNotDetermined");
+                completion(NO,PrivacyPermissionAuthorizationStatusNotDetermined);
             } else if (status == kCLAuthorizationStatusRestricted) {
-                completion(NO,@"AuthorizationStatusRestricted");
+                completion(NO,PrivacyPermissionAuthorizationStatusRestricted);
             }
         }break;
             
@@ -167,9 +147,9 @@ static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //定�
             CBCentralManager *centralManager = [[CBCentralManager alloc] init];
             CBManagerState state = [centralManager state];
             if (state == CBManagerStateUnsupported || state == CBManagerStateUnauthorized || state == CBManagerStateUnknown) {
-                completion(NO,@"AuthorizationStatusDenied");
+                completion(NO,PrivacyPermissionAuthorizationStatusDenied);
             } else {
-                completion(YES,@"AuthorizationStatusAuthorized");
+                completion(YES,PrivacyPermissionAuthorizationStatusAuthorized);
             }
         }break;
             
@@ -180,9 +160,8 @@ static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //定�
                 [center requestAuthorizationWithOptions:types completionHandler:^(BOOL granted, NSError * _Nullable error) {
                     if (granted) {
                         [center getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
-                            DLog(@"%@",settings);
                         }];
-                        completion(YES,@"AuthorizationStatusAuthorized");
+                        completion(YES,PrivacyPermissionAuthorizationStatusAuthorized);
                     } else {
                         [[UIApplication sharedApplication]openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] options:@{UIApplicationOpenURLOptionUniversalLinksOnly:@""} completionHandler:^(BOOL success) { }];
                     }
@@ -198,13 +177,13 @@ static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //定�
         case PrivacyPermissionTypeSpeech:{
             [SFSpeechRecognizer requestAuthorization:^(SFSpeechRecognizerAuthorizationStatus status) {
                 if (status == SFSpeechRecognizerAuthorizationStatusDenied) {
-                    completion(NO,@"AuthorizationStatusDenied");
+                    completion(NO,PrivacyPermissionAuthorizationStatusDenied);
                 } else if (status == SFSpeechRecognizerAuthorizationStatusNotDetermined) {
-                    completion(NO,@"AuthorizationStatusNotDetermined");
+                    completion(NO,PrivacyPermissionAuthorizationStatusNotDetermined);
                 } else if (status == SFSpeechRecognizerAuthorizationStatusRestricted) {
-                    completion(NO,@"AuthorizationStatusRestricted");
+                    completion(NO,PrivacyPermissionAuthorizationStatusRestricted);
                 } else if (status == SFSpeechRecognizerAuthorizationStatusAuthorized) {
-                    completion(YES,@"AuthorizationStatusAuthorized");
+                    completion(YES,PrivacyPermissionAuthorizationStatusAuthorized);
                 }
             }];
         }break;
@@ -214,14 +193,14 @@ static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //定�
             [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError * _Nullable error) {
                 EKAuthorizationStatus status = [EKEventStore  authorizationStatusForEntityType:EKEntityTypeEvent];
                 if (granted) {
-                    completion(YES,@"AuthorizationStatusAuthorized");
+                    completion(YES,PrivacyPermissionAuthorizationStatusAuthorized);
                 } else {
                     if (status == EKAuthorizationStatusDenied) {
-                        completion(NO,@"AuthorizationStatusDenied");
+                        completion(NO,PrivacyPermissionAuthorizationStatusDenied);
                     } else if (status == EKAuthorizationStatusNotDetermined) {
-                        completion(NO,@"AuthorizationStatusNotDetermined");
+                        completion(NO,PrivacyPermissionAuthorizationStatusNotDetermined);
                     } else if (status == EKAuthorizationStatusRestricted) {
-                        completion(NO,@"AuthorizationStatusRestricted");
+                        completion(NO,PrivacyPermissionAuthorizationStatusRestricted);
                     }
                 }
             }];
@@ -232,14 +211,14 @@ static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //定�
             [contactStore requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
                 CNAuthorizationStatus status = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
                 if (granted) {
-                    completion(YES,@"AuthorizationStatusAuthorized");
+                    completion(YES,PrivacyPermissionAuthorizationStatusAuthorized);
                 } else {
                     if (status == CNAuthorizationStatusDenied) {
-                        completion(NO,@"AuthorizationStatusDenied");
+                        completion(NO,PrivacyPermissionAuthorizationStatusDenied);
                     }else if (status == CNAuthorizationStatusRestricted){
-                        completion(NO,@"AuthorizationStatusNotDetermined");
+                        completion(NO,PrivacyPermissionAuthorizationStatusNotDetermined);
                     }else if (status == CNAuthorizationStatusNotDetermined){
-                        completion(NO,@"AuthorizationStatusRestricted");
+                        completion(NO,PrivacyPermissionAuthorizationStatusRestricted);
                     }
                 }
             }];
@@ -250,14 +229,14 @@ static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //定�
             [eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError * _Nullable error) {
                 EKAuthorizationStatus status = [EKEventStore  authorizationStatusForEntityType:EKEntityTypeEvent];
                 if (granted) {
-                    completion(YES,@"AuthorizationStatusAuthorized");
+                    completion(YES,PrivacyPermissionAuthorizationStatusAuthorized);
                 } else {
                     if (status == EKAuthorizationStatusDenied) {
-                        completion(NO,@"AuthorizationStatusDenied");
+                        completion(NO,PrivacyPermissionAuthorizationStatusDenied);
                     }else if (status == EKAuthorizationStatusNotDetermined){
-                        completion(NO,@"AuthorizationStatusNotDetermined");
+                        completion(NO,PrivacyPermissionAuthorizationStatusNotDetermined);
                     }else if (status == EKAuthorizationStatusRestricted){
-                        completion(NO,@"AuthorizationStatusRestricted");
+                        completion(NO,PrivacyPermissionAuthorizationStatusRestricted);
                     }
                 }
             }];
@@ -266,21 +245,21 @@ static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //定�
         case PrivacyPermissionTypeHealth:{
             if ([[[UIDevice currentDevice] systemVersion] doubleValue] >= 8.0) {
                 if (![HKHealthStore isHealthDataAvailable]) {
-                    NSAssert([HKHealthStore isHealthDataAvailable],@"该设备不支持HealthKit");
+                    NSAssert([HKHealthStore isHealthDataAvailable],@"Device not support HealthKit");
                 }else{
                     HKHealthStore *store = [[HKHealthStore alloc] init];
                     NSSet *readObjectTypes = [self readObjectTypes];
                     NSSet *writeObjectTypes = [self writeObjectTypes];
                     [store requestAuthorizationToShareTypes:writeObjectTypes readTypes:readObjectTypes completion:^(BOOL success, NSError * _Nullable error) {
                         if (success == YES) {
-                            completion(YES,@"AuthorizationStatusAuthorized");
+                            completion(YES,PrivacyPermissionAuthorizationStatusAuthorized);
                         }else{
-                            completion(NO,error.description);
+                            completion(NO,PrivacyPermissionAuthorizationStatusUnkonwn);
                         }
                     }];
                 }
             }else{
-                NSAssert([[[UIDevice currentDevice] systemVersion] doubleValue] >= 8.0, @"HealthKit暂不支持iOS8以下系统,请更新你的系统。");
+                NSAssert([[[UIDevice currentDevice] systemVersion] doubleValue] >= 8.0, @"iOS8 below systems are not currently supported");
             }
         }break;
             
