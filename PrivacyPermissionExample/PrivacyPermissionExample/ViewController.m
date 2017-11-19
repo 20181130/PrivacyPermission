@@ -42,7 +42,7 @@
                     ];
     
     _tableView = [[UITableView alloc]init];
-    _tableView.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64);
+    _tableView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.showsVerticalScrollIndicator = NO;
@@ -91,39 +91,78 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.row) {
-        case 0:
-            //
-            break;
-        case 1:
-            //
-            break;
-        case 2:
-            //
-            break;
-        case 3:
-            //
-            break;
-        case 4:
-            //
-            break;
-        case 5:
-            //
-            break;
-        case 6:
-            //
-            break;
-        case 7:
-            //
-            break;
-        case 8:
-            //
-            break;
-        case 9:
-            //
-            break;
-        case 10:
-            //
-            break;            
+        case 0:{
+            [[PrivacyPermission sharedInstance]accessPrivacyPermissionWithType:PrivacyPermissionTypePhoto completion:^(BOOL response, PrivacyPermissionAuthorizationStatus status) {
+                NSLog(@"response:%d \n status:%ld",response,status);
+            }];
+        }break;
+            
+        case 1:{
+            [[PrivacyPermission sharedInstance]accessPrivacyPermissionWithType:PrivacyPermissionTypeCamera completion:^(BOOL response, PrivacyPermissionAuthorizationStatus status) {
+                NSLog(@"response:%d \n status:%ld",response,status);
+            }];
+        }break;
+            
+        case 2:{
+            [[PrivacyPermission sharedInstance]accessPrivacyPermissionWithType:PrivacyPermissionTypeMedia completion:^(BOOL response, PrivacyPermissionAuthorizationStatus status) {
+                NSLog(@"response:%d \n status:%ld",response,status);
+            }];
+        }break;
+            
+        case 3:{
+            [[PrivacyPermission sharedInstance]accessPrivacyPermissionWithType:PrivacyPermissionTypeMicrophone completion:^(BOOL response, PrivacyPermissionAuthorizationStatus status) {
+                NSLog(@"response:%d \n status:%ld",response,status);
+            }];
+        }break;
+            
+        case 4:{
+            [[PrivacyPermission sharedInstance]accessPrivacyPermissionWithType:PrivacyPermissionTypeLocation completion:^(BOOL response, PrivacyPermissionAuthorizationStatus status) {
+                NSLog(@"response:%d \n status:%ld",response,status);
+            }];
+        }break;
+            
+        case 5:{
+            [[PrivacyPermission sharedInstance]accessPrivacyPermissionWithType:PrivacyPermissionTypeBluetooth completion:^(BOOL response, PrivacyPermissionAuthorizationStatus status) {
+                NSLog(@"response:%d \n status:%ld",response,status);
+            }];
+        }break;
+            
+        case 6:{
+            [[PrivacyPermission sharedInstance]accessPrivacyPermissionWithType:PrivacyPermissionTypePushNotification completion:^(BOOL response, PrivacyPermissionAuthorizationStatus status) {
+                NSLog(@"response:%d \n status:%ld",response,status);
+            }];
+        }break;
+            
+        case 7:{
+            [[PrivacyPermission sharedInstance]accessPrivacyPermissionWithType:PrivacyPermissionTypeSpeech completion:^(BOOL response, PrivacyPermissionAuthorizationStatus status) {
+                NSLog(@"response:%d \n status:%ld",response,status);
+            }];
+        }break;
+            
+        case 8:{
+            [[PrivacyPermission sharedInstance]accessPrivacyPermissionWithType:PrivacyPermissionTypeEvent completion:^(BOOL response, PrivacyPermissionAuthorizationStatus status) {
+                NSLog(@"response:%d \n status:%ld",response,status);
+            }];
+        }break;
+            
+        case 9:{
+            [[PrivacyPermission sharedInstance]accessPrivacyPermissionWithType:PrivacyPermissionTypeContact completion:^(BOOL response, PrivacyPermissionAuthorizationStatus status) {
+                NSLog(@"response:%d \n status:%ld",response,status);
+            }];
+        }break;
+            
+        case 10:{
+            [[PrivacyPermission sharedInstance]accessPrivacyPermissionWithType:PrivacyPermissionTypeReminder completion:^(BOOL response, PrivacyPermissionAuthorizationStatus status) {
+                NSLog(@"response:%d \n status:%ld",response,status);
+            }];
+        }break;
+            
+        case 11:{
+            [[PrivacyPermission sharedInstance]accessPrivacyPermissionWithType:PrivacyPermissionTypeHealth completion:^(BOOL response, PrivacyPermissionAuthorizationStatus status) {
+                NSLog(@"response:%d \n status:%ld",response,status);
+            }];
+        }break;
+            
         default:
             break;
     }

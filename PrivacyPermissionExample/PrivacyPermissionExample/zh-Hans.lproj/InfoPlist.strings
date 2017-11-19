@@ -6,10 +6,20 @@
   Copyright © 2017年 PrivacyPermission. All rights reserved.
 */
 
-// 应用名称
-CFBundleDisplayName = "推送示例";
+CFBundleDisplayName = "权限请求";
 
-// Authority
-NSLocationWhenInUseUsageDescription = "需要您的同意,才能在使用期间访问位置";
-NSLocationUsageDescription = "需要您的同意,才能访问位置";
-NSLocationAlwaysUsageDescription = "需要您的同意,才能始终访问位置";
+NSBluetoothPeripheralUsageDescription = "需要你的同意,才能访问蓝牙";
+NSAppleMusicUsageDescription = "需要你的同意,才能访问媒体资料库";
+NSCalendarsUsageDescription = "需要你的同意,才能访问日历";
+NSCameraUsageDescription = "需要你的同意,才能访问相机";
+NSContactsUsageDescription = "需要你的同意,才能访问通讯录";
+NSHealthShareUsageDescription = "需要你的同意,才能访问健康分享";
+NSHealthUpdateUsageDescription = "需要你的同意,才能访问健康更新";
+NSLocationWhenInUseUsageDescription = "需要你的同意,才能在使用期间访问位置";
+NSLocationUsageDescription = "需要你的同意,才能访问位置";
+NSLocationAlwaysUsageDescription = "需要你的同意,才能始终访问位置";
+NSMicrophoneUsageDescription = "需要你的同意,才能访问麦克风";
+NSMotionUsageDescription = "需要你的同意,才能访问运动与健身";
+NSPhotoLibraryUsageDescription = "需要你的同意,才能媒体资料库";
+NSRemindersUsageDescription = "需要你的同意,才能访问备忘录";
+NSSpeechRecognitionUsageDescription = "需要你的同意,才能访问语音识别";

@@ -50,8 +50,8 @@
 	<string>备忘录</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>语音识别</string>
-	<key>Privacy - Reminders Usage DescriptionPrivacy - Reminders Usage Description</key>
-	<string>提醒事项</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

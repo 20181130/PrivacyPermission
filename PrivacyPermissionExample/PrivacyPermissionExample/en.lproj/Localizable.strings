@@ -6,15 +6,15 @@
   Copyright © 2017年 PrivacyPermission. All rights reserved.
 */
 
-"打开相册权限" = "打开相册权限";
-"打开相机权限" = "打开相机权限";
-"打开媒体资料库权限" = "打开媒体资料库权限";
-"打开麦克风权限" = "打开麦克风权限";
-"打开位置权限" = "打开位置权限";
-"打开蓝牙权限" = "打开蓝牙权限";
-"打开推送权限" = "打开推送权限";
-"打开语音识别权限" = "打开语音识别权限";
-"打开日历权限" = "打开日历权限";
-"打开通讯录权限" = "打开通讯录权限";
-"打开提醒事项权限" = "打开提醒事项权限";
-"打开运动与健身权限" = "打开运动与健身权限";
+"打开相册权限" = "Access Photo Permission";
+"打开相机权限" = "Access Camera Permission";
+"打开媒体资料库权限" = "Access AppleMusic Permission";
+"打开麦克风权限" = "Access Microphone Permission";
+"打开位置权限" = "Access Location Permission";
+"打开蓝牙权限" = "Access Bluetooth Permission";
+"打开推送权限" = "Access PushNotification Permission";
+"打开语音识别权限" = "Access Speech Permission";
+"打开日历权限" = "Access Calendar Permission";
+"打开通讯录权限" = "Access Contacts Permission";
+"打开提醒事项权限" = "Access Reminder Permission";
+"打开运动与健身权限" = "Access Health Permission";
