@@ -6,7 +6,7 @@
 ![Language](https://img.shields.io/badge/language-Objective--C-B9D3EE.svg)&nbsp;
 
 
-## &emsp;&emsp; PrivacyPermission is a  library for accessing various system privacy permissions
+## &emsp;&emsp; PrivacyPermission is a library for accessing various system privacy permissions,you can use it for more friendly access.
 
 ## Privacy PermissionSupported
  - Photo
