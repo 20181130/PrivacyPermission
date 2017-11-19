@@ -49,8 +49,6 @@ static PrivacyPermission *_instance = nil;
 static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //定位精度
 
 @interface PrivacyPermission()
-//@property (nonatomic,strong) CLLocationManager *locationManager;
-//@property (nonatomic,strong) CBCentralManager *centralManager;
 @end
 
 @implementation PrivacyPermission
@@ -72,14 +70,6 @@ static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //定�
 +(instancetype)copyWithZone:(nullable NSZone *)zone{
     return _instance;
 }
--(instancetype)init{
-    if (self = [super init]) {
-//        self.locationManager = [[CLLocationManager alloc] init];
-//        self.centralManager = [[CBCentralManager alloc] init];
-    }
-    return self;
-}
-
 
 #pragma mark - Public
 -(void)accessPrivacyPermissionWithType:(PrivacyPermissionType)type completion:(void(^)(BOOL response,NSString *status))completion
