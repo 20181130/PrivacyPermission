@@ -8,7 +8,7 @@
 
 ## &emsp;&emsp; PrivacyPermission is a library for accessing various system privacy permissions,you can use it for more friendly access.
 
-## Privacy PermissionSupported
+## Privacy Permission Supported
  - Photo
  	- Privacy - Photo Library Usage Description
  - Camera
