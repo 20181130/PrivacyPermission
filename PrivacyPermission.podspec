@@ -7,9 +7,9 @@ PrivacyPermission is a library for accessing various system privacy permissions,
                    DESC
   s.homepage     = "https://github.com/GREENBANYAN/PrivacyPermission"
   s.license      = "MIT"
-  s.author             = { "GREENBANYAN" => "@greenbanyan@163.com" }
+  s.author       = { "GREENBANYAN" => "@greenbanyan@163.com" }
   s.platform     = :ios,'8.0'
   s.source       = { :git => "https://github.com/GREENBANYAN/PrivacyPermission.git", :tag => "#{s.version}" }
-  s.source_files  = "PrivacyPermission/*.{h,m}"
+  s.source_files = "PrivacyPermission/*.{h,m}"
   s.requires_arc = true
 end
