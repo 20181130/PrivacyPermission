@@ -53,7 +53,7 @@
 <pre>
  pod 'PrivacyPermission'
 </pre>
-![screenshot/cocoapods.png](screenshot/cocoapods.png)
+![Asset/cocoapods.png](Asset/cocoapods.png)
 
 ## Usage
 - [Example for access the photo permission](#EXAMPLE)
