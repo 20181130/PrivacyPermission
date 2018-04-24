@@ -37,28 +37,30 @@ static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //`Posi
 
 @implementation PrivacyPermission
 
-+(instancetype)sharedInstance{
++ (instancetype)sharedInstance {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _instance = [[self alloc] init];
     });
     return _instance;
 }
-+(instancetype)allocWithZone:(struct _NSZone *)zone{
+
++ (instancetype)allocWithZone:(struct _NSZone *)zone {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _instance = [super allocWithZone:zone];
     });
     return _instance;
 }
-+(instancetype)copyWithZone:(nullable NSZone *)zone{
+
++ (instancetype)copyWithZone:(nullable NSZone *)zone {
     return _instance;
 }
 
 #pragma mark - Public
--(void)accessPrivacyPermissionWithType:(PrivacyPermissionType)type completion:(void(^)(BOOL response,PrivacyPermissionAuthorizationStatus status))completion{
+- (void)accessPrivacyPermissionWithType:(PrivacyPermissionType)type completion:(void(^)(BOOL response,PrivacyPermissionAuthorizationStatus status))completion {
     switch (type) {
-        case PrivacyPermissionTypePhoto:{
+        case PrivacyPermissionTypePhoto: {
             [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
                 if (status == PHAuthorizationStatusDenied) {
                     completion(NO,PrivacyPermissionAuthorizationStatusDenied);
@@ -72,7 +74,7 @@ static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //`Posi
             }];
         }break;
             
-        case PrivacyPermissionTypeCamera:{
+        case PrivacyPermissionTypeCamera: {
             [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
                 AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
                 if (granted) {
@@ -89,7 +91,7 @@ static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //`Posi
             }];
         }break;
             
-        case PrivacyPermissionTypeMedia:{
+        case PrivacyPermissionTypeMedia: {
             [MPMediaLibrary requestAuthorization:^(MPMediaLibraryAuthorizationStatus status) {
                 if (status == MPMediaLibraryAuthorizationStatusDenied) {
                     completion(NO,PrivacyPermissionAuthorizationStatusDenied);
@@ -103,7 +105,7 @@ static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //`Posi
             }];
         }break;
             
-        case PrivacyPermissionTypeMicrophone:{
+        case PrivacyPermissionTypeMicrophone: {
             [AVCaptureDevice requestAccessForMediaType:AVMediaTypeAudio completionHandler:^(BOOL granted) {
                 AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
                 if (granted) {
@@ -120,7 +122,7 @@ static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //`Posi
             }];
         }break;
             
-        case PrivacyPermissionTypeLocation:{
+        case PrivacyPermissionTypeLocation: {
             if ([CLLocationManager locationServicesEnabled]) {
                 CLLocationManager *locationManager = [[CLLocationManager alloc]init];
                 [locationManager requestAlwaysAuthorization];
@@ -143,7 +145,7 @@ static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //`Posi
             }
         }break;
             
-        case PrivacyPermissionTypeBluetooth:{
+        case PrivacyPermissionTypeBluetooth: {
             CBCentralManager *centralManager = [[CBCentralManager alloc] init];
             CBManagerState state = [centralManager state];
             if (state == CBManagerStateUnsupported || state == CBManagerStateUnauthorized || state == CBManagerStateUnknown) {
@@ -153,7 +155,7 @@ static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //`Posi
             }
         }break;
             
-        case PrivacyPermissionTypePushNotification:{
+        case PrivacyPermissionTypePushNotification: {
             if ([[[UIDevice currentDevice] systemVersion] doubleValue] >= 10.0) {
                 UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
                 UNAuthorizationOptions types=UNAuthorizationOptionBadge|UNAuthorizationOptionAlert|UNAuthorizationOptionSound;
@@ -174,7 +176,7 @@ static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //`Posi
             }
         }break;
             
-        case PrivacyPermissionTypeSpeech:{
+        case PrivacyPermissionTypeSpeech: {
             [SFSpeechRecognizer requestAuthorization:^(SFSpeechRecognizerAuthorizationStatus status) {
                 if (status == SFSpeechRecognizerAuthorizationStatusDenied) {
                     completion(NO,PrivacyPermissionAuthorizationStatusDenied);
@@ -188,8 +190,8 @@ static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //`Posi
             }];
         }break;
             
-        case PrivacyPermissionTypeEvent:{
-            EKEventStore *store = [[EKEventStore alloc]init];
+        case PrivacyPermissionTypeEvent: {
+            EKEventStore *store = [[EKEventStore alloc] init];
             [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError * _Nullable error) {
                 EKAuthorizationStatus status = [EKEventStore  authorizationStatusForEntityType:EKEntityTypeEvent];
                 if (granted) {
@@ -206,7 +208,7 @@ static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //`Posi
             }];
         }break;
             
-        case PrivacyPermissionTypeContact:{
+        case PrivacyPermissionTypeContact: {
             CNContactStore *contactStore = [[CNContactStore alloc] init];
             [contactStore requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
                 CNAuthorizationStatus status = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
@@ -224,8 +226,8 @@ static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //`Posi
             }];
         }break;
             
-        case PrivacyPermissionTypeReminder:{
-            EKEventStore *eventStore = [[EKEventStore alloc]init];
+        case PrivacyPermissionTypeReminder: {
+            EKEventStore *eventStore = [[EKEventStore alloc] init];
             [eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError * _Nullable error) {
                 EKAuthorizationStatus status = [EKEventStore  authorizationStatusForEntityType:EKEntityTypeEvent];
                 if (granted) {
@@ -242,46 +244,9 @@ static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //`Posi
             }];
         }break;
             
-        case PrivacyPermissionTypeHealth:{
-            if ([[[UIDevice currentDevice] systemVersion] doubleValue] >= 8.0) {
-                if (![HKHealthStore isHealthDataAvailable]) {
-                    NSAssert([HKHealthStore isHealthDataAvailable],@"Device not support HealthKit");
-                }else{
-                    HKHealthStore *store = [[HKHealthStore alloc] init];
-                    NSSet *readObjectTypes = [self readObjectTypes];
-                    NSSet *writeObjectTypes = [self writeObjectTypes];
-                    [store requestAuthorizationToShareTypes:writeObjectTypes readTypes:readObjectTypes completion:^(BOOL success, NSError * _Nullable error) {
-                        if (success == YES) {
-                            completion(YES,PrivacyPermissionAuthorizationStatusAuthorized);
-                        }else{
-                            completion(NO,PrivacyPermissionAuthorizationStatusUnkonwn);
-                        }
-                    }];
-                }
-            }else{
-                NSAssert([[[UIDevice currentDevice] systemVersion] doubleValue] >= 8.0, @"iOS8 below systems are not currently supported");
-            }
-        }break;
-            
         default:
             break;
     }
-}
-
-#pragma mark - Private
--(NSSet *)readObjectTypes{
-    HKQuantityType *StepCount = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
-    HKQuantityType *DistanceWalkingRunning= [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierDistanceWalkingRunning];
-    HKObjectType *FlightsClimbed = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierFlightsClimbed];
-    
-    return [NSSet setWithObjects:StepCount,DistanceWalkingRunning,FlightsClimbed, nil];
-}
--(NSSet *)writeObjectTypes{
-    HKQuantityType *StepCount = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
-    HKQuantityType *DistanceWalkingRunning= [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierDistanceWalkingRunning];
-    HKObjectType *FlightsClimbed = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierFlightsClimbed];
-    
-    return [NSSet setWithObjects:StepCount,DistanceWalkingRunning,FlightsClimbed, nil];
 }
 
 @end

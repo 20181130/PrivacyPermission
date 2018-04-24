@@ -35,10 +35,7 @@ typedef NS_ENUM(NSUInteger,PrivacyPermissionType) {
     PrivacyPermissionTypeEvent,
     PrivacyPermissionTypeContact,
     PrivacyPermissionTypeReminder,
-    PrivacyPermissionTypeHealth,
 };
-/*`PrivacyPermissionTypeHealth only have three kinds of permission for read and write,setp count、distance walking running and flights climbed,if you want to access more permissions about `HealthStore`,please refer to the link` -> PrivacyPermissionTypeHealth只有步数,步行+跑步距离和以爬楼层三种读写权限，如果想要访问更多关于`HealthStore`权限请参考链接*/
-// https://github.com/GREENBANYAN/skoal
 
 typedef NS_ENUM(NSUInteger,PrivacyPermissionAuthorizationStatus) {
     PrivacyPermissionAuthorizationStatusAuthorized = 0,
@@ -52,13 +49,13 @@ typedef NS_ENUM(NSUInteger,PrivacyPermissionAuthorizationStatus) {
 
 @interface PrivacyPermission : NSObject
 
-+(instancetype)sharedInstance;
++ (instancetype)sharedInstance;
 
 /**
  * @brief `Function for access the permissions` -> 获取权限函数
  * @param type `The enumeration type for access permission` -> 获取权限枚举类型
  * @param completion `A block for the permission result and the value of authorization status` -> 获取权限结果和对应权限状态的block
  */
--(void)accessPrivacyPermissionWithType:(PrivacyPermissionType)type completion:(void(^)(BOOL response,PrivacyPermissionAuthorizationStatus status))completion;
+- (void)accessPrivacyPermissionWithType:(PrivacyPermissionType)type completion:(void(^)(BOOL response,PrivacyPermissionAuthorizationStatus status))completion;
 
 @end
