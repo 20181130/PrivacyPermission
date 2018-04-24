@@ -32,9 +32,9 @@
  	- Privacy - Contacts Usage Description
  - Reminder
  	- Privacy - Reminders Usage Description 
- - Health
- 	- Privacy - Health Share Usage Description
- 	- Privacy - Health Update Usage Description
+ - <del>Health</del>
+ 	- <del>Privacy - Health Share Usage Description</del>
+ 	- <del>Privacy - Health Update Usage Description</del>
  
 ## Preview
  mainpage CN  | mainpage USA
@@ -67,7 +67,12 @@
      }];
 ```
 
+## CHANGELOG
+- Version 2.0.1
 
+```
+ delete func releate to 'HealthyKit' 
+```
 
 
 
