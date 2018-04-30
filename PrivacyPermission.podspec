@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "PrivacyPermission"
-  s.version      = "2.0.1"
+  s.version      = "2.0.2"
   s.summary      = "PrivacyPermission is a library for accessing various system privacy permissions ."
   s.description  = <<-DESC
 PrivacyPermission is a library for accessing various system privacy permissions,you can use it for more friendly access.
