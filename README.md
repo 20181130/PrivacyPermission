@@ -53,7 +53,6 @@
 <pre>
  pod 'PrivacyPermission'
 </pre>
-![Asset/cocoapods.png](Asset/cocoapods.png)
 
 ## Usage
 - [Example for access the photo permission](#EXAMPLE)
@@ -74,7 +73,10 @@
  delete func releate to 'HealthyKit' 
 ```
 
-
+- Version 2.0.2
+```
+eliminate the warning
+```
 
 
 [1]:  https://github.com/GREENBANYAN/PrivacyPermission/blob/master/LICENSE "MIT License"	
