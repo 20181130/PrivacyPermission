@@ -53,12 +53,11 @@ static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //`Posi
     return _instance;
 }
 
-+ (instancetype)copyWithZone:(nullable NSZone *)zone {
+- (id)copyWithZone:(nullable NSZone *)zone {
     return _instance;
 }
 
-#pragma mark - Public
-- (void)accessPrivacyPermissionWithType:(PrivacyPermissionType)type completion:(void(^)(BOOL response,PrivacyPermissionAuthorizationStatus status))completion {
+- (void)accessPrivacyPermissionWithType:(PrivacyPermissionType)type completion:(void(^)(BOOL response,PrivacyPermissionAuthorizationStatus status))completion API_AVAILABLE(ios(10.0)){
     switch (type) {
         case PrivacyPermissionTypePhoto: {
             [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
