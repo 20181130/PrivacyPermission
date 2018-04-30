@@ -155,24 +155,24 @@ static NSInteger const PrivacyPermissionTypeLocationDistanceFilter = 10; //`Posi
         }break;
             
         case PrivacyPermissionTypePushNotification: {
-            if ([[[UIDevice currentDevice] systemVersion] doubleValue] >= 10.0) {
+            if (@available(iOS 10.0, *)) {
                 UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
                 UNAuthorizationOptions types=UNAuthorizationOptionBadge|UNAuthorizationOptionAlert|UNAuthorizationOptionSound;
                 [center requestAuthorizationWithOptions:types completionHandler:^(BOOL granted, NSError * _Nullable error) {
                     if (granted) {
                         [center getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
+                            //
                         }];
-                        completion(YES,PrivacyPermissionAuthorizationStatusAuthorized);
                     } else {
                         [[UIApplication sharedApplication]openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] options:@{UIApplicationOpenURLOptionUniversalLinksOnly:@""} completionHandler:^(BOOL success) { }];
                     }
                 }];
-            }else if ([[[UIDevice currentDevice] systemVersion] doubleValue] >= 8.0){
+            } else {
 #pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#pragma clang diagnostic ignored"-Wdeprecated-declarations"
                 [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeSound | UIUserNotificationTypeBadge categories:nil]];
-#pragma clang diagnostic pop
             }
+#pragma clang diagnostic pop
         }break;
             
         case PrivacyPermissionTypeSpeech: {
